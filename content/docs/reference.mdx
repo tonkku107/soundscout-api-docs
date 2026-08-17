@@ -1,0 +1,123 @@
+---
+title: Reference
+description: Basic information about the API
+---
+
+## Base URL
+
+```
+https://soundscout.com/api
+```
+
+All paths in this documentation will be relative to this URL unless otherwise specified
+
+## Response format
+
+All endpoints respond with `application/json` unless otherwise specified
+
+## Errors
+
+Typical error messages look like this:
+
+```json
+{ "Error": { "Message": "Internal server error" } }
+```
+
+## Authentication
+
+Authentication is performed via the cookie `goldloginz`.
+The cookie is valid for a month and has `HttpOnly`, `Secure` and `SameSite=None` flags set.\
+Unfortunately the sign-in endpoints are protected with a CAPTCHA and
+there is no OAuth or personal API token system, so users will have to be instructed to copy this cookie.
+
+## Fields
+
+Here is how fields are going to be documented
+
+### Optional and nullable fields
+
+Fields that may be omitted are suffixed with a question mark.
+Types which can appear as `null` are prefixed with a question mark.
+
+#### Example [!toc]
+
+<FieldTable
+  fields={{
+    RequiredField: {
+      type: "type",
+      required: true,
+    },
+    OptionalField: {
+      type: "type",
+    },
+    NullableField: {
+      type: "type",
+      nullable: true,
+      required: true,
+    },
+    OptionalAndNullableField: {
+      type: "type",
+      nullable: true,
+    },
+  }}
+/>
+
+### Query String arrays
+
+When query string parameters mention an array of values, the field should be defined multiple times for multiple values.
+For example, `?columns=ArtistsTitle&columns=Title` would be treated as `"Columns": ["ArtistsTitle", "Title"]`
+
+### Pagination
+
+Many endpoints return only a small amount of the whole data.
+The following query parameters are used to obtain a specific range of values:
+
+<FieldTable
+  fields={{
+    limit: {
+      type: "integer",
+      description: "The amount of results to return",
+    },
+    offset: {
+      type: "integer",
+      description:
+        "The amount of results to skip. Increase by increments of limit for the next page",
+    },
+  }}
+/>
+The response follows this format:
+<FieldTable paginatedData='*varies*' />
+
+## Image formatting
+
+Some endpoints redirect to an original image file. To avoid downloading unnecessarely large files these can be automatically resized.
+
+<Callout title="This endpoint does not use the usual base URL!" />
+<Route method="GET">https:&#8203;//cdx.monstercat.com</Route>
+
+Redirects to `https://cdx.monstercat.com/resized/{SHA1(url)}/{width}.{encoding}` containing the image file if it has already been generated.
+If it has not been generated yet, the endpoint redirects to the original url instead and starts a background job to encode the image.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    url: {
+      description: "The endpoint for the original image file",
+      type: "string",
+      required: true,
+    },
+    width: {
+      description:
+        "A desired width for the image file (0-4096). Height is determined automatically from aspect ratio.",
+      type: "integer",
+      default: "0",
+    },
+    encoding: {
+      description:
+        "The desired image format (jpeg, png, webp). Unknown values will fall back to the default.",
+      type: "string",
+      default: "jpeg",
+    },
+  }}
+/>

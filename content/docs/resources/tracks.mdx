@@ -1,0 +1,1028 @@
+---
+title: Tracks
+---
+
+## Track Object
+
+<FieldTable
+  fields={{
+    Artists: {
+      description: "The artists that created the track",
+      type: "array of [track artist](#track-artist-object) objects",
+      nullable: true,
+      required: true,
+    },
+    ArtistsTitle: {
+      description: "Artists of the track combined into a displayable string",
+      type: "string",
+      required: true,
+    },
+    BPM: {
+      description: "Beats Per Minute",
+      type: "number",
+      required: true,
+    },
+    BrandTitle: {
+      description:
+        "The sub-brand of the label the track released on. May be the same as the label itself",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    Duration: {
+      description: "Duration of the track in seconds",
+      type: "number",
+      required: true,
+    },
+    EffectiveGenrePrimary: {
+      description:
+        "The primary genre of the track as shown on the website. Some genres have been combined together",
+      type: "string",
+      required: true,
+    },
+    EffectiveGenreSecondary: {
+      description:
+        "The secondary genre of the track as shown on the website. Some genres have been combined together",
+      type: "string",
+      required: true,
+    },
+    GenrePrimary: {
+      description:
+        "The actual primary genre of the track. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    GenreSecondary: {
+      description:
+        "The actual secondary genre of the track. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    ISRC: {
+      description: "International Standard Recording Code",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    IsCreatorFriendly: {
+      description: "Whether the track is copyright safe",
+      type: "boolean",
+      required: true,
+    },
+    IsExplicit: {
+      description: "Whether the track is explicit",
+      type: "boolean",
+      required: true,
+    },
+    IsFavorite: {
+      description: "Whether the track is in the user's favorites playlist",
+      type: "boolean",
+    },
+    LabelID: {
+      description: "UUID of the label the track released on",
+      type: "string",
+      required: true,
+    },
+    LabelTitle: {
+      description: "The name of the label the track released on",
+      type: "string",
+      nullable: true,
+    },
+    Lyrics: {
+      description: "The lyrics of the track",
+      type: "string",
+      required: true,
+    },
+    LyricsLanguage: {
+      description: "The language of the lyrics",
+      type: "string",
+      required: true,
+    },
+    NoContentID: {
+      description: "Whether the track is excluded from the Content ID system",
+      type: "boolean",
+      required: true,
+    },
+    PerformanceType: {
+      description: "Type of performance (`Vocal` or `Instrumental`)",
+      type: "string",
+      required: true,
+    },
+    PreferredImageFileID: {
+      description: "UUID of the cover art image",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    ReleaseAlbumNotes: {
+      description: "Liner Notes for the release the track is tied to",
+      type: "string",
+      required: true,
+    },
+    ReleaseArtistsTitle: {
+      description:
+        "Artists of the release the track is tied to combined into a displayable string",
+      type: "string",
+      required: true,
+    },
+    ReleaseCatalogID: {
+      description: "Catalog ID of the release the track is tied to",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    ReleaseCopyrightPLine: {
+      description:
+        "Notice of sound recording copyright (℗) of the release the track is tied to",
+      type: "string",
+      required: true,
+    },
+    ReleaseCoverFileID: {
+      description:
+        "UUID of the cover art image of the release the track is tied to",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    ReleaseDate: {
+      description: "Date and time when the track released",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    ReleaseDateTimezone: {
+      description: "Timezone identifier for the release date",
+      type: "string",
+      required: true,
+    },
+    ReleaseDescription: {
+      description: "Description of the release the track is tied to",
+      type: "string",
+      required: true,
+    },
+    ReleaseEffectiveGenrePrimary: {
+      description:
+        "The primary genre of the release the track is tied to as shown on the website",
+      type: "string",
+      required: true,
+    },
+    ReleaseEffectiveGenreSecondary: {
+      description:
+        "The secondary genre of the release the track is tied to as shown on the website",
+      type: "string",
+      required: true,
+    },
+    ReleaseFeaturedArtistsTitle: {
+      description:
+        "Artists featured on the release the track is tied to combined into a displayable string",
+      type: "string",
+      required: true,
+    },
+    ReleaseGRid: {
+      description:
+        "Global Release Identifier of the release the track is tied to",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    ReleaseGenrePrimary: {
+      description:
+        "The actual primary genre of the release the track is tied to. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    ReleaseGenreSecondary: {
+      description:
+        "The actual secondary genre of the release the track is tied to. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    ReleaseID: {
+      description:
+        "UUID of the release the track is tied to. **NOTE:** A track with the same `TrackID` might show up multiple times with a different `ReleaseID`",
+      type: "string",
+      required: true,
+    },
+    ReleaseLabelID: {
+      description:
+        "UUID of the label the release the track is tied to released on",
+      type: "string",
+      required: true,
+    },
+    ReleaseTags: {
+      description: "Tags of the release the track is tied to",
+      type: "array of strings",
+      nullable: true,
+      required: true,
+    },
+    ReleaseTitle: {
+      description: "Title of the release the track is tied to",
+      type: "string",
+      required: true,
+    },
+    ReleaseType: {
+      description:
+        "Type of the release the track is tied to (e.g. Single, EP, Album, Compilation)",
+      type: "string",
+      required: true,
+    },
+    ReleaseUPC: {
+      description: "Universal Product Code of the release the track is tied to",
+      type: "string",
+      nullable: true,
+      required: true,
+    },
+    ReleaseVersion: {
+      description:
+        "Version of the release the track is tied to. Goes into parentheses after the title (e.g. Remix, VIP, etc...)",
+      type: "string",
+      required: true,
+    },
+    Relevancy: {
+      description: "Relevancy of the track. Value never seems to be populated",
+      type: "null",
+      required: true,
+    },
+    SkipAims: {
+      description:
+        "Presumably whether the track is excluded from automatic recommendations (like moods)",
+      type: "boolean",
+      required: true,
+    },
+    Tags: {
+      description: "Tags of the track",
+      type: "array of strings",
+      nullable: true,
+      required: true,
+    },
+    Title: {
+      description: "The track title",
+      type: "string",
+      required: true,
+    },
+    TrackID: {
+      description: "UUID of the track",
+      type: "string",
+      required: true,
+    },
+    TrackNumber: {
+      description: "Position of the track within the release it is tied to",
+      type: "number",
+      required: true,
+    },
+    Version: {
+      description:
+        "Version of the track. Goes into parentheses after the title (e.g. Remix, VIP, etc...)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Track Object [!toc]
+
+```json
+{
+  "TrackID": "c6d956bb-1544-4f13-9ac7-93bb729cff67",
+  "Title": "Deadweight",
+  "ArtistsTitle": "ORACLE \u0026 Bertie Scott",
+  "Version": "",
+  "BPM": 122,
+  "Duration": 248,
+  "ISRC": "CA6D22600231",
+  "GenrePrimary": "",
+  "GenreSecondary": "",
+  "EffectiveGenrePrimary": "Dance",
+  "EffectiveGenreSecondary": "Melodic House \u0026 Techno",
+  "IsExplicit": false,
+  "IsCreatorFriendly": false,
+  "Lyrics": "Dark days,\nDrag me down.\nLosing faith.\nPieces all scattered around.\nCold and grey.\nStart to drown in the waves.\n\nVacant, can't hold this. \nWasting the moments.\nStill feeling like deadweight.\nHanging on, just deadweight.\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n\nDark days, losing count.\nPushed out of shape.\nPieces all scattered around.\nCold and grey.\nGoing down in the waves.\n\nVacant, can't hold this. \nWasting the moments.\nStill feeling like deadweight.\nHanging on, just deadweight.\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.",
+  "LyricsLanguage": "eng",
+  "PerformanceType": "Vocal",
+  "Tags": [
+    "2010s",
+    "B major",
+    "bass",
+    "calm",
+    "confident",
+    "dreamy",
+    "drums",
+    "electropop",
+    "en",
+    "fashion",
+    "male vocal",
+    "medium",
+    "parties",
+    "positive",
+    "reality tv",
+    "sensual",
+    "summer",
+    "synth",
+    "uplifting",
+    "vocal",
+    "warm",
+    "youth"
+  ],
+  "LabelID": "dc854522-dd9e-4c06-8bf7-8ce5be043434",
+  "BrandTitle": "Silk",
+  "SkipAims": false,
+  "NoContentID": false,
+  "LabelTitle": "Monstercat",
+  "Artists": [
+    {
+      "ID": "5d820fe1-23a0-47bd-82ae-6e89be0a583c",
+      "Name": "ORACLE",
+      "URL": "oracle",
+      "Role": "Primary"
+    },
+    {
+      "ID": "40ce2675-7763-4f50-9f68-0bc62978f2b5",
+      "Name": "Bertie Scott",
+      "URL": "bertiescott",
+      "Role": "Primary"
+    }
+  ],
+  "PreferredImageFileID": null,
+  "Relevancy": null,
+  "IsFavorite": false,
+  "TrackNumber": 1,
+  "ReleaseID": "b91bd3a7-9212-4f75-a8a7-310cac215502",
+  "ReleaseTitle": "Deadweight",
+  "ReleaseArtistsTitle": "ORACLE \u0026 Bertie Scott",
+  "ReleaseFeaturedArtistsTitle": "ORACLE \u0026 Bertie Scott",
+  "ReleaseVersion": "",
+  "ReleaseDate": "2026-08-18T07:00:00.922Z",
+  "ReleaseDateTimezone": "America/Vancouver",
+  "ReleaseType": "EP",
+  "ReleaseGenrePrimary": "",
+  "ReleaseGenreSecondary": "",
+  "ReleaseEffectiveGenrePrimary": "Dance",
+  "ReleaseEffectiveGenreSecondary": "Melodic House \u0026 Techno",
+  "ReleaseTags": [],
+  "ReleaseUPC": "742779562876",
+  "ReleaseCatalogID": "742779562876",
+  "ReleaseGRid": "A10443Z5I5JVJ9E6V1",
+  "ReleaseCoverFileID": "12338dbc-2713-4cce-9e36-8cd042ccdd50",
+  "ReleaseAlbumNotes": "",
+  "ReleaseDescription": "",
+  "ReleaseCopyrightPLine": "Monstercat",
+  "ReleaseLabelID": "dc854522-dd9e-4c06-8bf7-8ce5be043434"
+}
+```
+
+### Track Artist Object
+
+<FieldTable
+  fields={{
+    ID: {
+      description: "UUID of the artist",
+      type: "string",
+      required: true,
+    },
+    Name: {
+      description: "Name of the artist",
+      type: "string",
+      required: true,
+    },
+    URL: {
+      description:
+        "Slug to the artist's profile page. `soundscout.com/player/artists/{URL}`",
+      type: "string",
+      required: true,
+    },
+    Role: {
+      description:
+        "Artist's role in the creation of the track (`Primary`, `Featured`, `Remixer`)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Catalog
+
+### Audio Feature Distribution Object
+
+<FieldTable
+  fields={{
+    Feature: {
+      description: "Name of the audio feature",
+      type: "string",
+      required: true,
+    },
+    MaxValue: {
+      description: "Maximum value for the range",
+      type: "number",
+      required: true,
+    },
+    MeanValue: {
+      description: "Average value",
+      type: "number",
+      required: true,
+    },
+    MinValue: {
+      description: "Minimum value for the range",
+      type: "number",
+      required: true,
+    },
+    P05: {
+      description: "5th percentile value",
+      type: "number",
+      required: true,
+    },
+    P25: {
+      description: "25th percentile value",
+      type: "number",
+      required: true,
+    },
+    P50: {
+      description: "50th percentile value",
+      type: "number",
+      required: true,
+    },
+    P75: {
+      description: "75th percentile value",
+      type: "number",
+      required: true,
+    },
+    P95: {
+      description: "95th percentile value",
+      type: "number",
+      required: true,
+    },
+    PopulatedCount: {
+      description: "Amount of tracks that have data for this feature",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
+### Tag Distribution Object
+
+<FieldTable
+  fields={{
+    Category: {
+      description:
+        "The category of tag (`decades`, `instruments`, `languages`, `moods`, `usages`)",
+      type: "string",
+      required: true,
+    },
+    Tag: {
+      description: "The name of the tag",
+      type: "string",
+      required: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks that have this tag",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
+### Genre Distribution Object
+
+<FieldTable
+  fields={{
+    ID: {
+      description: "The UUID of the genre",
+      type: "string",
+      required: true,
+    },
+    Title: {
+      description: "The name of the genre",
+      type: "string",
+      required: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks that have this genre",
+      type: "integer",
+      required: true,
+    },
+    Type: {
+      description: "The type of genre (`primary` or `secondary`)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### Label Distribution Object
+
+<FieldTable
+  fields={{
+    BrandTitle: {
+      description:
+        "The name of the sub-brand of the label. May be the same as the label itself if they do not have sub-brands",
+      type: "string",
+      required: true,
+    },
+    LabelID: {
+      description: "The UUID of the label",
+      type: "string",
+      required: true,
+    },
+    LabelTitle: {
+      description: "The name of the label",
+      type: "string",
+      required: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks that the label has",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
+### Keys
+
+| Key | Value |
+| --- | ----- |
+| C   | 0     |
+| C#  | 1     |
+| D   | 2     |
+| D#  | 3     |
+| Eb  | 3     |
+| E   | 4     |
+| F   | 5     |
+| F#  | 6     |
+| G   | 7     |
+| G#  | 8     |
+| Ab  | 8     |
+| A   | 9     |
+| A#  | 10    |
+| Bb  | 10    |
+| B   | 11    |
+
+### Modes
+
+| Mode  | Value |
+| ----- | ----- |
+| Minor | 0     |
+| Major | 1     |
+
+## Get Track
+
+<Route method="GET">/catalog/[\{Track.TrackID}](#track-object)</Route>
+
+Get a track by ID. Returns a [track](#track-object) object.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+    },
+  }}
+/>
+
+## Browse Tracks
+
+<Route method="GET">/catalog</Route>
+
+Browse and filter tracks.
+
+#### Query String Params [!toc] [#browse-tracks-query-string-params]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of tracks to return (max 100)",
+      type: "integer",
+      default: "20",
+    },
+    offset: {
+      description: "Amount of tracks to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order",
+      type: "string",
+      default: "`-ReleaseDate`",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+    },
+    creator_safe: {
+      description: "Use copyright safe mode",
+      type: "boolean",
+    },
+    artist_id: {
+      description:
+        "Filter for tracks by a specific artist. Value is the artist's UUID",
+      type: "string",
+    },
+    release_id: {
+      description:
+        "Filter for tracks in a specific release. Value is the `ReleaseID`",
+      type: "string",
+    },
+    track_id: {
+      description: "Filter for a specific track. Value is the `TrackID`",
+      type: "string",
+    },
+    query_id: {
+      description: "Filter for tracks from search results",
+      type: "string",
+    },
+    genres: {
+      description:
+        "Musical style or genre. Values are the UUIDs of genres and they can be obtained with [Get Catalog Genre Distribution](#get-catalog-genre-distribution)",
+      type: "array of strings",
+    },
+    route_genres: {
+      description:
+        "Same as `genres` but used specifically on genre explore pages",
+      type: "array of strings",
+    },
+    moods: {
+      description:
+        "Track mood or feel. Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)",
+      type: "array of strings",
+    },
+    usages: {
+      description:
+        "Suggested usage context (e.g. travel, fitness, sci-fi). Hints at how a track is typically used. Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)",
+      type: "array of strings",
+    },
+    order_tag: {
+      description:
+        "Filter on theme and mood explore pages. Value is of the format `{Category}:{Tag}` (e.g. `moods:positive` or `usages:fashion`)",
+      type: "string",
+    },
+    instruments: {
+      description:
+        "Primary instrument(s) featured in the track. Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)",
+      type: "array of strings",
+    },
+    key: {
+      description: "The [root note of the musical key](#keys) of the track",
+      type: "array of integers",
+    },
+    mode: {
+      description: "The [mode of the musical key](#modes) of the track",
+      type: "array of integers",
+    },
+    bpm_min: {
+      description: "Minimum beats per minute",
+      type: "number",
+    },
+    bpm_max: {
+      description: "Maximum beats per minute",
+      type: "number",
+    },
+    duration_min: {
+      description: "Filters tracks by length. Minimum duration",
+      type: "number",
+    },
+    duration_max: {
+      description: "Filters tracks by length. Maximum duration",
+      type: "number",
+    },
+    popularity_min: {
+      description:
+        "Filters tracks by popularity score (0–100), derived from streaming activity. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    popularity_max: {
+      description:
+        "Filters tracks by popularity score (0–100), derived from streaming activity. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    label: {
+      description:
+        'The record label that released the track. Values are of the format `{LabelID}:{BrandTitle}` and available labels can be obtained with [Get Catalog Label Distribution](#get-catalog-label-distribution). An empty `BrandTitle` means "Other". (e.g. `dc854522-dd9e-4c06-8bf7-8ce5be043434:Uncaged` for Monstercat Uncaged and `dc854522-dd9e-4c06-8bf7-8ce5be043434:` for Monstercat - Other)',
+      type: "array of strings",
+    },
+    languages: {
+      description:
+        'Primary vocal language(s) detected in the track. Use `__not_detected__` for "Others". Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)',
+      type: "array of strings",
+    },
+    vocals: {
+      description:
+        "Instrumental vs Vocal. `true` for vocals, `false` for instrumental",
+      type: "boolean",
+    },
+    energy_min: {
+      description:
+        "A measure of intensity and activity. High energy tracks feel fast, loud, and noisy. Low energy tracks are calm and gentle. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    energy_max: {
+      description:
+        "A measure of intensity and activity. High energy tracks feel fast, loud, and noisy. Low energy tracks are calm and gentle. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    danceability_min: {
+      description:
+        "How suitable a track is for dancing, based on tempo, rhythm stability, beat strength, and overall regularity. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    danceability_max: {
+      description:
+        "How suitable a track is for dancing, based on tempo, rhythm stability, beat strength, and overall regularity. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    valence_min: {
+      description:
+        "Musical positiveness. High valence sounds happy, cheerful, or euphoric. Low valence sounds sad, tense, or melancholic. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    valence_max: {
+      description:
+        "Musical positiveness. High valence sounds happy, cheerful, or euphoric. Low valence sounds sad, tense, or melancholic. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    acousticness_min: {
+      description:
+        "A measure of how acoustic the track is. High values indicate a predominantly acoustic sound. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    acousticness_max: {
+      description:
+        "A measure of how acoustic the track is. High values indicate a predominantly acoustic sound. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    instrumentalness_min: {
+      description:
+        "Predicts whether a track contains no vocals. Higher values indicate a greater likelihood the track is purely instrumental. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    instrumentalness_max: {
+      description:
+        "Predicts whether a track contains no vocals. Higher values indicate a greater likelihood the track is purely instrumental. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    liveness_min: {
+      description:
+        "Detects the presence of a live audience in the recording. Higher values suggest the track was performed live. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    liveness_max: {
+      description:
+        "Detects the presence of a live audience in the recording. Higher values suggest the track was performed live. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    speechiness_min: {
+      description:
+        "Detects spoken words. Higher values lean toward podcasts, audiobooks, or speech-heavy tracks. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    speechiness_max: {
+      description:
+        "Detects spoken words. Higher values lean toward podcasts, audiobooks, or speech-heavy tracks. Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    loudness_min: {
+      description:
+        "Overall loudness in decibels. Typical range −60 dB (silent) to 0 dB (full scale). Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+    loudness_max: {
+      description:
+        "Overall loudness in decibels. Typical range −60 dB (silent) to 0 dB (full scale). Acceptable range of values can be obtained with [Get Catalog Audio Feature Distributions](#get-catalog-audio-feature-distributions)",
+      type: "number",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [track](#track-object) objects" />
+
+## Get Track Cover Art
+
+<Route method="GET">
+  /file/[\{Track.PreferredImageFileID}](#track-object)/cover
+</Route>
+
+Redirects to the original cover art file. If `PreferredImageFileID` is `null`, use [Get Release Cover Art](./releases#get-release-cover-art) instead.
+For size and format options, see [Image Formatting](../reference#image-formatting).
+
+## Stream Track
+
+<Route method="GET">/track/[\{Track.TrackID}](#track-object)/stream</Route>
+
+Redirects to a streamable audio file. The file depends on the authenticated user.
+
+| User type       | Format               | Description                         |
+| --------------- | -------------------- | ----------------------------------- |
+| Unauthenticated | `MP3_128_NC_PREVIEW` | A short preview of the track        |
+| Free account    | `MP3_128_NC`         | 128kbps .mp3 file with no cover art |
+| Premium account | `MP3_320_NC`         | 320kbps .mp3 file with no cover art |
+
+## Download Track
+
+<Route method="GET">
+  /release/[\{Track.ReleaseID}](#track-object)/track/[\{Track.TrackID}
+  ](#track-object)/encoding
+</Route>
+
+Download a track in the desired format.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    format: {
+      description: "The desired file format",
+      type: "string",
+      required: true,
+    },
+    filename: {
+      description: "The file name",
+      default: "The original file name",
+      type: "string",
+    },
+  }}
+/>
+
+##### Downloadable formats [!toc]
+
+| Format    | Description                                                                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `MP3_320` | 320kbps .mp3 file. Lossy compression at high quality with smaller file sizes                                            |
+| `FLAC`    | .flac (Free Lossless Audio Codec) file. Lossless compression with bigger file sizes                                     |
+| `WAV`     | .wav (Waveform Audio File Format) file. Uncompressed and lossless with the biggest file size. Does not include metadata |
+
+#### Response Body [!toc]
+
+If the header `Accept: application/json` is set the following response is returned
+
+<FieldTable
+  fields={{
+    Expires: {
+      description: "When the link expires",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    SignedURL: {
+      description: "The link to the downloadable file",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+Otherwise redirects directly to the `SignedURL`
+
+## Get Catalog Audio Feature Distributions
+
+<Route method="GET">/audio-features/distributions</Route>
+
+Get the range of values and statistics for audio feature filters.
+Returns an array of [Audio Feature Distribution](#audio-feature-distribution-object) objects.
+
+## Get Catalog Tag Distribution
+
+<Route method="GET">/tag-distribution</Route>
+
+Get the available tags and the amount of tracks with said tag.
+Returns a paginated format but all results are always included.
+[Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [tag distribution](#tag-distribution-object) objects" />
+
+## Get Catalog Tag Distribution For Explore
+
+<Route method="GET">
+  /tag-distribution/[\{Tag.Category}](#tag-distribution-object)/[\{Tag.Tag}
+  ](#tag-distribution-object)
+</Route>
+
+Version of tag distribution for themes and moods explore pages.
+Identical to [Get Catalog Tag Distribution](#get-catalog-tag-distribution) when filtered for the same tag, except tags with no results are omitted entirely.
+
+## Get Catalog Genre Distribution
+
+<Route method="GET">/genre-distribution</Route>
+
+Get the available genres and the amount of tracks with that genre.
+Returns a paginated format but all results are always included.
+[Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [genre distribution](#genre-distribution-object) objects" />
+
+## Get Catalog Genre Distribution For Explore
+
+<Route method="GET">
+  /genre-distribution/[\{Genre.ID}](#genre-distribution-object)
+</Route>
+
+Version of genre distribution for explore pages.
+Identical to [Get Catalog Genre Distribution](#get-catalog-genre-distribution) when filtered for the same genre, except genres with no results are omitted entirely.
+
+## Get Catalog Label Distribution
+
+<Route method="GET">/label-distribution</Route>
+
+Get the available labels and how many tracks they have released.
+Returns a paginated format but all results are always included.
+[Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [label distribution](#label-distribution-object) objects" />
+
+## Get Track (unused)
+
+<Route method="GET">/track/[\{Track.ID}](#track-object)</Route>
+
+Alternate endpoint for getting a track.
+In these track objects `TrackID` is called `ID`,
+fields starting with `Release` and the fields `Artists` and `TrackNumber` are excluded,
+and it has the following additional fields:
+
+<FieldTable fields={{
+  AlternateISRCs: {
+    description: "Alternate ISRCs for the track",
+    type: "unknown",
+    nullable: true,
+    required: true,
+  },
+  DebutDate: {
+    description: "Date when the track first released",
+    type: "ISO8601 Timestamp",
+    nullable: true,
+    required: true,
+  },
+  ID: {
+    description:
+      "Instead of `TrackID` this field is used",
+    type: "string",
+    required: true,
+  },
+  LMNoContentIDGap: {
+    description: "Gap in exclusion from the Content ID system",
+    type: "unknown",
+    nullable: true,
+    required: true,
+  },
+  ProcessClaimsAfter: {
+    description: "Date after which Content ID claims started processing",
+    type: "ISO8601 Timestamp",
+    required: true,
+  },
+}} />
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `All fields`,
+    },
+  }}
+/>
+
+## Browse Tracks (unused)
+
+<Route method="GET">/track</Route>
+
+Alternate endpoint for browsing tracks.
+Same differences as [Get Track (unused)](#get-track-unused) apply.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of tracks to return (max 20)",
+      type: "integer",
+      default: "20",
+    },
+    offset: {
+      description: "Amount of tracks to skip",
+      type: "integer",
+      default: "0",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `All fields`,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of modified track objects" />

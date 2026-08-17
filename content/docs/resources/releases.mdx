@@ -1,0 +1,307 @@
+---
+title: Releases
+---
+
+## Release Object
+
+<FieldTable
+  fields={{
+    AlbumNotes: {
+      description: "Liner Notes for the release",
+      type: "string",
+      required: true,
+    },
+    ArtistsTitle: {
+      description: "Artists of the release combined into a displayable string",
+      type: "string",
+      required: true,
+    },
+    CatalogID: {
+      description: "Catalog ID of the release",
+      type: "string",
+      required: true,
+      nullable: true,
+    },
+    CopyrightPLine: {
+      description: "Notice of sound recording copyright (℗)",
+      type: "string",
+      required: true,
+    },
+    CoverFileID: {
+      description: "UUID of the cover art image",
+      type: "string",
+      required: true,
+      nullable: true,
+    },
+    Description: {
+      description: "UUID of the cover art image",
+      type: "string",
+      required: true,
+    },
+    EffectiveGenrePrimary: {
+      description:
+        "The primary genre of the release as shown on the website. Some genres have been combined together",
+      type: "string",
+      required: true,
+    },
+    EffectiveGenrePrimaryID: {
+      description: "The UUID of the effective primary genre",
+      type: "string",
+      required: true,
+    },
+    EffectiveGenreSecondary: {
+      description:
+        "The secondary genre of the release as shown on the website. Some genres have been combined together",
+      type: "string",
+      required: true,
+    },
+    EffectiveGenreSecondaryID: {
+      description: "The UUID of the effective secondary genre",
+      type: "string",
+      required: true,
+    },
+    FeaturedArtistsTitle: {
+      description:
+        "Artists featured on the release combined into a displayable string",
+      type: "string",
+      required: true,
+    },
+    GRid: {
+      description: "Global Release Identifier of the release",
+      type: "string",
+      required: true,
+      nullable: true,
+    },
+    GenrePrimary: {
+      description:
+        "The actual primary genre of the release. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    GenreSecondary: {
+      description:
+        "The actual secondary genre of the release. Currently this is always an empty string",
+      type: "string",
+      required: true,
+    },
+    ID: {
+      description: "The UUID of the release",
+      type: "string",
+      required: true,
+    },
+    LabelID: {
+      description: "UUID of the label the release released on",
+      type: "string",
+      required: true,
+    },
+    ReleaseDate: {
+      description: "Date and time when the release released",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    ReleaseDateTimezone: {
+      description: "Timezone identifier for the release date",
+      type: "string",
+      required: true,
+    },
+    Tags: {
+      description: "Tags of the release",
+      type: "array of strings",
+      nullable: true,
+      required: true,
+    },
+    Title: {
+      description: "Title of the release",
+      type: "string",
+      required: true,
+    },
+    Type: {
+      description: "Type of the release (e.g. Single, EP, Album, Compilation)",
+      type: "string",
+      required: true,
+    },
+    UPC: {
+      description: "Universal Product Code of the release",
+      type: "string",
+      required: true,
+      nullable: true,
+    },
+    Version: {
+      description:
+        "Version of the release. Goes into parentheses after the title (e.g. Remix, VIP, etc...)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Release Object [!toc]
+
+```json
+{
+  "ID": "4a94a5c2-0068-450a-ae65-5b67de703311",
+  "AlbumNotes": "",
+  "ArtistsTitle": "Sullivan King \u0026 Excision",
+  "CatalogID": "742779550262",
+  "CopyrightPLine": "Monstercat",
+  "CoverFileID": "5665b175-b5e5-40ee-976c-46a56b3779a2",
+  "Description": "",
+  "FeaturedArtistsTitle": "Sullivan King \u0026 Excision",
+  "GenrePrimary": "",
+  "GenreSecondary": "",
+  "EffectiveGenrePrimary": "Dance",
+  "EffectiveGenreSecondary": "Electronic",
+  "EffectiveGenrePrimaryID": "fc2324c6-1b22-40d7-9cc8-8cb8cf7d4d5e",
+  "EffectiveGenreSecondaryID": "d0633361-25db-4db0-a9ea-bf216f1dc9a4",
+  "GRid": "A10443ZXA68GE0BQLM",
+  "LabelID": "dc854522-dd9e-4c06-8bf7-8ce5be043434",
+  "ReleaseDate": "2023-11-13T08:00:00.63Z",
+  "ReleaseDateTimezone": "America/Vancouver",
+  "Tags": null,
+  "Title": "Fall Apart",
+  "Type": "Single",
+  "Version": "GHENGAR Remix",
+  "UPC": "742779550262"
+}
+```
+
+### Release Artist Object
+
+<FieldTable
+  fields={{
+    ArtistID: {
+      description: "UUID of the artist",
+      type: "string",
+      required: true,
+    },
+    ArtistNumber: {
+      description: "Order to display artists in",
+      type: "integer",
+      required: true,
+    },
+    DisplayName: {
+      description: "Artist's name",
+      type: "string",
+      required: true,
+    },
+    ReleaseID: {
+      description: "UUID of the release",
+      type: "string",
+      required: true,
+    },
+    Role: {
+      description:
+        "Artist's role in the creation of the release (`Primary`, `Featured`, `Remixer`)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Release Artist Object [!toc]
+
+```json
+{
+  "ReleaseID": "4a94a5c2-0068-450a-ae65-5b67de703311",
+  "ArtistID": "38e0eba5-f2de-4170-9873-12572db6a26d",
+  "Role": "Primary",
+  "ArtistNumber": 1,
+  "DisplayName": "Sullivan King"
+}
+```
+
+## Get Release
+
+<Route method="GET">/release/[\{Release.ID}](#release-object)</Route>
+
+Get a release by ID. Returns a [release](#release-object) object.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "CatalogID", "CopyrightPLine", "CoverFileID", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "FeaturedArtistsTitle", "GRid", "ID", "LabelID", "ReleaseDate", "ReleaseDateTimezone", "Title", "Type", "UPC", "Version"]</details>`,
+    },
+  }}
+/>
+
+## Browse Releases
+
+<Route method="GET">/release</Route>
+
+Browse and filter releases.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of releases to return (max 20)",
+      type: "integer",
+      default: "20",
+    },
+    offset: {
+      description: "Amount of releases to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order",
+      type: "string",
+      default: "",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "CatalogID", "CopyrightPLine", "CoverFileID", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "FeaturedArtistsTitle", "GRid", "ID", "LabelID", "ReleaseDate", "ReleaseDateTimezone", "Title", "Type", "UPC", "Version"]</details>`,
+    },
+    creator_safe: {
+      description: "Use copyright safe mode",
+      type: "boolean",
+    },
+    artist_id: {
+      description:
+        "Filter for releases by a specific artist. Value is the artist's UUID",
+      type: "string",
+    },
+    associated_artist_id: {
+      description:
+        'Filter for releases that an artist is featured on aka "Appears on". Value is the artist\'s UUID',
+      type: "string",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [release](#release-object) objects" />
+
+## Get Release Artists
+
+<Route method="GET">/release/[\{Release.ID}](#release-object)/artists</Route>
+
+Get the artists of a release. Returns an array of [release artist](#release-artist-object) objects.
+
+## Get Release Cover Art
+
+<Route method="GET">/release/[\{Release.ID}](#release-object)/cover</Route>
+
+Redirects to the original cover art file.
+For size and format options, see [Image Formatting](../reference#image-formatting).
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    fileID: {
+      description: "The UUID of the cover art from `CoverFileID`",
+      type: "string",
+    },
+  }}
+/>
