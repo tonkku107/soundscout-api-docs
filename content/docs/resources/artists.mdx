@@ -1,0 +1,174 @@
+---
+title: Artists
+---
+
+## Artist Object
+
+<FieldTable
+  fields={{
+    Description: {
+      description: "Artist's bio",
+      type: "string",
+      required: true,
+    },
+    ID: {
+      description: "UUID of the artist",
+      type: "string",
+      required: true,
+    },
+    Images: {
+      description: "Images of the artist",
+      type: "[artist images](#artist-images-object) object",
+      required: true,
+      nullable: true,
+    },
+    Links: {
+      description: "Links to the artist's social media profiles",
+      type: "array of [artist link](#artist-link-object) objects",
+      required: true,
+      nullable: true,
+    },
+    Name: {
+      description: "The artist's name",
+      type: "string",
+      required: true,
+    },
+    Tags: {
+      description: "Tags for the artist",
+      type: "array of strings",
+      required: true,
+      nullable: true,
+    },
+    URI: {
+      description:
+        "The slug to the artist's profile page. `soundscout.com/player/artists/{URI}`",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Artist Object [!toc]
+
+```json
+{
+  "ID": "28eb7dcd-61d1-4496-a36b-65ce1fa6cafa",
+  "Name": "Bad Computer",
+  "URI": "badcomputer",
+  "Links": [
+    { "Platform": "Instagram", "URL": "https://instagram.com/badcmptr" },
+    { "Platform": "Twitter", "URL": "https://twitter.com/badcmptr" },
+    { "Platform": "Facebook", "URL": "https://facebook.com/BadComputer" },
+    { "Platform": "YouTube", "URL": "https://youtube.com/c/BadComputer" },
+    { "Platform": "Spotify", "URL": "https://open.spotify.com/artist/7uGeDBa1LJ7T1X4fpl8mwk" },
+    { "Platform": "SoundCloud", "URL": "https://soundcloud.com/badcomputer" },
+    { "Platform": "Apple Music", "URL": "https://music.apple.com/us/artist/bad-computer/1254358016" }
+  ],
+  "Tags": null,
+  "Description": "Bad Computer embraces a cycle of reinvention. He emerges from 2021 artistically renewed after an introspective year, adapting to a new life on a new continent. “It's taken a long time to adjust to Finland. I needed that break of 12 months not only to experiment and find my new stylistic trajectory, but also to ground myself”. Time spent in artistic meditation resulted in a newfound confidence for the Australian-born artist, reconnecting in his limbo with the music that inspired him. Drawing on dance pop and the early 2010s as inspiration points to fuse with his familiar sharp and euphoric production style, he took the next step forward. Reflection, experimentation and soul-searching opened up Bad Computer’s artistic voice, allowing him to write more expressively with the aim of creating memorable and seamless music. Pulling influence from all directions, from Owl City to Ecco2K, Bad Computer sets forward on a more thoughtful and genuine approach to songwriting. His new music eschews the guilt of a guilty pleasure, affectionately embracing cliché and truism in the pursuit of unabashed artistic freedom. “I do what I like, and if it’s trendy or cheesy I’ll do it anyway.”\nSonically, Bad Computer moves from strength to strength. The same captivating and inventive production style that cemented him as one of the most exciting acts in current electronic music has blossomed into a more deliberate manifestation. His familiar alchemic production style has into a more intimate form, being deployed in more sporadic rushes of ethereal wonder that seek to capture a feeling in its essence. Careful, melismatic processing brings Ferrier’s own voice to life on his new music, accompanied with rich soundscapes and soaring astral synthesizers. This reconstruction of his musical voice brings to light the familiar ethereal balance of his music, yet far more seamless than ever before. Each sound tells its own stories, and melds together into a rich yet delicate clarity, a soundtrack to memories yet to be made.",
+  "Images": { "cover": "8ec2592d-9480-413b-8b48-fb89dcaa7271" }
+}
+```
+
+### Artist Images Object
+
+<FieldTable
+  fields={{
+    cover: {
+      description: "UUID of the artist's cover image",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### Artist Link Object
+
+<FieldTable
+  fields={{
+    Platform: {
+      description: "Name of the social media platform",
+      type: "string",
+      required: true,
+    },
+    URL: {
+      description: "Link to the artist's profile on that platform",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Get Artist
+
+<Route method="GET">/artist/[\{Artist.ID or Artist.URI}](#artist-object)</Route>
+
+Get an artist by ID or URL slug. Returns an [artist](#artist-object) object.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `All fields`,
+    },
+  }}
+/>
+
+## Browse Artists
+
+<Route method="GET">/artist</Route>
+
+Browse all artists.
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of artists to return (max 20)",
+      type: "integer",
+      default: "20",
+    },
+    offset: {
+      description: "Amount of artists to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order. `Popularity` is also an option despite not being a visible field",
+      type: "string",
+      default: "",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `All fields`,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [artist](#artist-object) objects" />
+
+## Get Artist Cover Image
+
+<Route method="GET">/artist/[\{Artist.ID}](#artist-object)/cover</Route>
+
+Redirects to the original cover image file.
+For size and format options, see [Image Formatting](../reference#image-formatting).
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    fileID: {
+      description: "The UUID of the file from `Images.cover`",
+      type: "string",
+    },
+  }}
+/>
