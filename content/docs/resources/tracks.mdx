@@ -248,9 +248,10 @@ title: Tracks
       required: true,
     },
     Relevancy: {
-      description: "Relevancy of the track. Value never seems to be populated",
-      type: "null",
+      description: "Order of relevancy within a mood or theme",
+      type: "integer",
       required: true,
+      nullable: true,
     },
     SkipAims: {
       description:
@@ -669,7 +670,7 @@ Browse and filter tracks.
     },
     order_tag: {
       description:
-        "Filter on theme and mood explore pages. Value is of the format `{Category}:{Tag}` (e.g. `moods:positive` or `usages:fashion`)",
+        "Filter on theme and mood explore pages. Value is of the format `{Category}:{Tag}` (e.g. `moods:positive` or `usages:fashion`). When present, default sort changes to `Relevancy`",
       type: "string",
     },
     instruments: {
