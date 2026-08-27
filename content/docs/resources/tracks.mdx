@@ -114,6 +114,16 @@ title: Tracks
       nullable: true,
       required: true,
     },
+    PublicBPM: {
+      description: "Public version of BPM",
+      type: "number",
+      required: true,
+    },
+    PublicDuration: {
+      description: "Public version of Duration",
+      type: "number",
+      required: true,
+    },
     ReleaseAlbumNotes: {
       description: "Liner Notes for the release the track is tied to",
       type: "string",
@@ -293,6 +303,8 @@ title: Tracks
   "GenreSecondary": "",
   "EffectiveGenrePrimary": "Dance",
   "EffectiveGenreSecondary": "Melodic House \u0026 Techno",
+  "PublicBPM": 122,
+  "PublicDuration": 248,
   "IsExplicit": false,
   "IsCreatorFriendly": false,
   "Lyrics": "Dark days,\nDrag me down.\nLosing faith.\nPieces all scattered around.\nCold and grey.\nStart to drown in the waves.\n\nVacant, can't hold this. \nWasting the moments.\nStill feeling like deadweight.\nHanging on, just deadweight.\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n\nDark days, losing count.\nPushed out of shape.\nPieces all scattered around.\nCold and grey.\nGoing down in the waves.\n\nVacant, can't hold this. \nWasting the moments.\nStill feeling like deadweight.\nHanging on, just deadweight.\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n(Deadweight)\n(Hanging on, just deadweight.)\n\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.\n\nPulling the shoulders down,\nFacing so close to ground,\nStill feeling like deadweight.\nFeeling like deadweight.\nDeadweight.",
@@ -576,7 +588,7 @@ Get a track by ID. Returns a [track](#track-object) object.
       description:
         "Fields to include in the response. Excluded fields will still be present but use their default values",
       type: "array of strings",
-      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
     },
   }}
 />
@@ -611,7 +623,7 @@ Browse and filter tracks.
       description:
         "Fields to include in the response. Excluded fields will still be present but use their default values",
       type: "array of strings",
-      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
     },
     creator_safe: {
       description: "Use copyright safe mode",
