@@ -716,6 +716,10 @@ Browse and filter tracks.
         'The record label that released the track. Values are of the format `{LabelID}:{BrandTitle}` and available labels can be obtained with [Get Catalog Label Distribution](#get-catalog-label-distribution). An empty `BrandTitle` means "Other". (e.g. `dc854522-dd9e-4c06-8bf7-8ce5be043434:Uncaged` for Monstercat Uncaged and `dc854522-dd9e-4c06-8bf7-8ce5be043434:` for Monstercat - Other)',
       type: "array of strings",
     },
+    release_types: {
+      description: "Filters tracks by release type",
+      type: "array of strings",
+    },
     languages: {
       description:
         'Primary vocal language(s) detected in the track. Use `__not_detected__` for "Others". Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)',
