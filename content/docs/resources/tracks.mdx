@@ -906,7 +906,18 @@ Returns an array of [Audio Feature Distribution](#audio-feature-distribution-obj
 
 Get the available tags and the amount of tracks with said tag.
 Returns a paginated format but all results are always included.
+
+#### Query String Parameters [!toc]
+
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+On top of the filters from Browse Tracks the following are also included:
+
+<FieldTable fields={{
+  playlistId: {
+    description: "UUID of a playlist to get distribution for",
+    type: "string",
+  },
+}} />
 
 #### Response Body [!toc]
 
@@ -928,7 +939,18 @@ Identical to [Get Catalog Tag Distribution](#get-catalog-tag-distribution) when 
 
 Get the available genres and the amount of tracks with that genre.
 Returns a paginated format but all results are always included.
+
+#### Query String Parameters [!toc]
+
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+On top of the filters from Browse Tracks the following are also included:
+
+<FieldTable fields={{
+  playlistId: {
+    description: "UUID of a playlist to get distribution for",
+    type: "string",
+  },
+}} />
 
 #### Response Body [!toc]
 
@@ -949,7 +971,18 @@ Identical to [Get Catalog Genre Distribution](#get-catalog-genre-distribution) w
 
 Get the available labels and how many tracks they have released.
 Returns a paginated format but all results are always included.
+
+#### Query String Parameters [!toc]
+
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+On top of the filters from Browse Tracks the following are also included:
+
+<FieldTable fields={{
+  playlistId: {
+    description: "UUID of a playlist to get distribution for",
+    type: "string",
+  },
+}} />
 
 #### Response Body [!toc]
 

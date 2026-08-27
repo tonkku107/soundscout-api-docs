@@ -1,0 +1,619 @@
+---
+title: Playlists
+---
+
+## Playlist Object
+
+<FieldTable
+  fields={{
+    AimsPlaylistID: {
+      description: "Seems unused",
+      type: "string",
+      required: true,
+    },
+    CallerRole: {
+      description:
+        "Current user's role on the playlist (owner, editor, viewer or empty)",
+      type: "string",
+      required: true,
+    },
+    CoverImageIDs: {
+      description: "Up to 4 cover UUIDs to compose a playlist cover",
+      type: "array of strings",
+      required: true,
+      nullable: true,
+    },
+    CreatedAt: {
+      description: "Playlist creation date and time",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    FollowerCount: {
+      description: "Amount of followers the playlist has",
+      type: "integer",
+      required: true,
+    },
+    ID: {
+      description: "UUID of the playlist",
+      type: "string",
+      required: true,
+    },
+    IsFavorite: {
+      description:
+        "Whether the playlist is the current user's favorites playlist",
+      type: "boolean",
+      required: true,
+    },
+    IsTheme: {
+      description: "Whether the playlist is for themes",
+      type: "boolean",
+      required: true,
+    },
+    Name: {
+      description: "Name of the playlist",
+      type: "string",
+      required: true,
+    },
+    Owners: {
+      description:
+        "The owner(s) of the playlist. (Usually a playlist can only have one owner)",
+      type: "array of [playlist owner](#playlist-owner-object) objects",
+      required: true,
+      nullable: true,
+    },
+    Public: {
+      description: "Whether the playlist is public",
+      type: "boolean",
+      required: true,
+    },
+    TotalDuration: {
+      description: "Total length of the playlist in seconds",
+      type: "integer",
+      required: true,
+      nullable: true,
+    },
+    TrackCount: {
+      description: "Total number of tracks in the playlist",
+      type: "integer",
+      required: true,
+      nullable: true,
+    },
+    UpdatedAt: {
+      description: "Date and time of the last change to the playlist",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Playlist Object [!toc]
+
+```json
+{
+  "ID": "e9b4319d-da64-4e41-84c4-14c48ad0bb98",
+  "CreatedAt": "2026-05-23T03:06:15.404474Z",
+  "UpdatedAt": "2026-05-23T03:06:51.946002Z",
+  "Name": "Beats for Coding",
+  "Public": true,
+  "CoverImageIDs": ["d5d1514c-f2c2-478a-a718-868f02645716"],
+  "CallerRole": "",
+  "IsFavorite": false,
+  "IsTheme": false,
+  "FollowerCount": 5,
+  "TrackCount": 31,
+  "TotalDuration": 9657,
+  "Owners": [
+    {
+      "PersonID": "a4cc4cd5-95b8-4244-bd20-d51743f2ca85",
+      "Email": "tech@monstercat.com"
+    }
+  ],
+  "AimsPlaylistID": ""
+}
+```
+
+### Playlist Owner Object
+
+<FieldTable
+  fields={{
+    Email: {
+      description: "The owner's email",
+      type: "string",
+      required: true,
+    },
+    PersonID: {
+      description: "The owner's UUID",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+### Playlist Track Object
+
+<FieldTable
+  fields={{
+    PlaylistID: {
+      description: "UUID of the playlist",
+      type: "string",
+      required: true,
+    },
+    Sort: {
+      description: "Ordering within the playlist",
+      type: "integer",
+      required: true,
+    },
+    Track: {
+      description: "Information about the track",
+      type: "[track](./tracks#track-object) object",
+      required: true,
+    },
+    TrackID: {
+      description: "UUID of the track",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Playlist Track Object [!toc]
+
+```json
+{
+  "PlaylistID": "e9b4319d-da64-4e41-84c4-14c48ad0bb98",
+  "TrackID": "c8f3aa7a-469d-4aa9-a1fa-b615fa9112b6",
+  "Sort": 0,
+  "Track": { ... }
+}
+```
+
+### Playlist Member Object
+
+<FieldTable
+  fields={{
+    CreatedAt: {
+      description: "When the user was added as a member to the playlist",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    Email: {
+      description: "The user's email",
+      type: "string",
+      required: true,
+    },
+    IsFavorite: {
+      description: "If the playlist is the user's favorites playlist",
+      type: "boolean",
+      required: true,
+    },
+    Name: {
+      description: "The user's name",
+      type: "string",
+      required: true,
+    },
+    PersonID: {
+      description: "UUID of the user",
+      type: "string",
+      required: true,
+    },
+    PlaylistID: {
+      description: "UUID of the playlist",
+      type: "string",
+      required: true,
+    },
+    Role: {
+      description: "The role of the user (owner, editor, viewer)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Example Playlist Member Object [!toc]
+
+```json
+{
+  "PlaylistID": "e9b4319d-da64-4e41-84c4-14c48ad0bb98",
+  "PersonID": "a4cc4cd5-95b8-4244-bd20-d51743f2ca85",
+  "Role": "owner",
+  "IsFavorite": false,
+  "CreatedAt": "2026-05-23T03:06:15.404474Z",
+  "Name": "",
+  "Email": ""
+}
+```
+
+## Get Playlist
+
+<Route method="GET">/playlist/[\{Playlist.ID}](#playlist-object)</Route>
+
+Get a playlist by ID. Returns a [playlist](#playlist-object) object.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["CallerRole", "CoverImageIDs", "CreatedAt", "ID", "IsFavorite", "IsTheme", "Name", "Public", "UpdatedAt"]</details>`,
+    },
+  }}
+/>
+
+## Get Favorites Playlist
+
+<Route method="GET">/me/library</Route>
+<Callout title="This endpoint requires authentication" />
+
+Get the current user's favorites playlist.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["CallerRole", "CoverImageIDs", "CreatedAt", "ID", "IsFavorite", "IsTheme", "Name", "Public", "UpdatedAt"]</details>`,
+    },
+  }}
+/>
+
+## Get Public Playlists
+
+<Route method="GET">/public-playlists</Route>
+
+Get public playlists also known as "Editor's Picks".
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of playlists to return (max 50)",
+      type: "integer",
+      default: "50",
+    },
+    offset: {
+      description: "Amount of playlists to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order",
+      type: "string",
+      default: "`-CreatedAt`",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["CallerRole", "CoverImageIDs", "CreatedAt", "ID", "IsFavorite", "IsTheme", "Name", "Public", "UpdatedAt"]</details>`,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [playlist](#playlist-object) objects" />
+
+## Get User's Playlists
+
+<Route method="GET">/my-playlists</Route>
+<Callout title="This endpoint requires authentication" />
+
+Get playlists created by the current user.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of playlists to return (max 50)",
+      type: "integer",
+      default: "50",
+    },
+    offset: {
+      description: "Amount of playlists to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order",
+      type: "string",
+      default: "`-CreatedAt`",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["CallerRole", "CoverImageIDs", "CreatedAt", "ID", "IsFavorite", "IsTheme", "Name", "Public", "UpdatedAt"]</details>`,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [playlist](#playlist-object) objects" />
+
+## Get Participating Playlists
+
+<Route method="GET">/member-playlists</Route>
+<Callout title="This endpoint requires authentication" />
+
+Get playlists that have been created by or shared to the current user.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of playlists to return (max 50)",
+      type: "integer",
+      default: "50",
+    },
+    offset: {
+      description: "Amount of playlists to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order",
+      type: "string",
+      default: "`-CreatedAt`",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["CallerRole", "CoverImageIDs", "CreatedAt", "ID", "IsFavorite", "IsTheme", "Name", "Public", "UpdatedAt"]</details>`,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [playlist](#playlist-object) objects" />
+
+## Create Playlist
+
+<Route method="POST">/playlist</Route>
+<Callout title="This endpoint requires authentication" />
+
+Create a new playlist.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    Name: {
+      description: "The name for the playlist to be created",
+      type: "string",
+      required: true,
+    },
+    Public: {
+      description:
+        "Whether to create a public playlist. This will be ignored as users cannot currently create public playlists",
+      type: "boolean",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+Returns a 201 Created on success with the following field
+
+<FieldTable
+  fields={{
+    ID: {
+      description: "UUID of the playlist that was just created",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Edit Playlist
+
+<Route method="POST">/playlist/[\{Playlist.ID}](#playlist-object)</Route>
+<Callout title="This endpoint requires authentication" />
+
+Edit playlist settings. Returns 204 No Content on success.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    Name: {
+      description: "New name for the playlist",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Delete Playlist
+
+<Route method="POST">/playlist/[\{Playlist.ID}](#playlist-object)/delete</Route>
+<Callout title="This endpoint requires authentication" />
+
+Delete a playlist. Returns 204 No Content on success.
+
+## Get Playlist Cover
+
+<Route method="GET">
+  /file/[\{Playlist.CoverImageIDs[]}](#playlist-object)/cover
+</Route>
+
+Redirects to the original cover file.
+For size and format options, see [Image Formatting](../reference#image-formatting).
+
+## Get Playlist Tracks
+
+<Route method="GET">/playlist/[\{Playlist.ID}](#playlist-object)/tracks</Route>
+
+Browse and filter tracks in a playlist.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of tracks to return (max 50)",
+      type: "integer",
+      default: "50",
+    },
+    offset: {
+      description: "Amount of tracks to skip",
+      type: "integer",
+      default: "0",
+    },
+    sort: {
+      description:
+        "Field name to sort by. Prefix with `-` to use descending order. `Date` is also an option despite not being a visible field to sort by date added",
+      type: "string",
+      default: "",
+    },
+    columns: {
+      description:
+        "Fields to include in the response. Excluded fields will still be present but use their default values. Prefix fields in the track object with `Track` (e.g. `TrackTitle` except for ones that start with `Release` (e.g. `ReleaseDate`) or already start with `Track` (e.g. `TrackNumber`)",
+      type: "array of strings",
+      default: `<details><summary>Best effort list of defaults</summary>["PlaylistID", "TrackID", "Sort", "TrackArtistsTitle", "TrackBPM", "TrackBrandTitle", "TrackDuration", "TrackEffectiveGenrePrimary", "TrackEffectiveGenreSecondary", "TrackISRC", "TrackIsCreatorFriendly", "TrackIsExplicit", "TrackIsFavorite", "TrackLabelID", "TrackLyrics", "TrackLyricsLanguage", "TrackNoContentID", "TrackPerformanceType", "TrackPreferredImageFileID", "TrackPublicBPM", "TrackPublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "TrackSkipAims", "TrackTags", "TrackTitle", "TrackNumber", "TrackVersion"]</details>`,
+    },
+  }}
+/>
+
+In addition, [Filtering query parameters from Browse Tracks](./tracks#browse-tracks-query-string-params) can be used to filter the playlist in the same way.
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [playlist track](#playlist-track-object) objects" />
+
+## Add Track To Playlist
+
+<Route method="POST">/playlist/[\{Playlist.ID}](#playlist-object)/track</Route>
+<Callout title="This endpoint requires authentication" />
+
+Adds a track to the bottom of the playlist. Returns 204 No Content on success.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    TrackID: {
+      description: "The UUID of the track to add to the playlist",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Remove Track From Playlist
+
+<Route method="POST">
+  /playlist/[\{Playlist.ID}](#playlist-object)/track/[\{PlaylistTrack.TrackID}
+  ](#playlist-track-object)/delete
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Removes the track from the playlist. Returns 204 No Content on success.
+
+## Add Track To Favorites
+
+<Route method="POST">
+  /me/library/track/[\{Track.TrackID}](./tracks#track-object)
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Adds a track to the user's favorites. Returns 204 No Content on success.
+
+## Remove Track From Favorites
+
+<Route method="POST">
+  /me/library/track/[\{Track.TrackID}](./tracks#track-object)/delete
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Removes a track from the user's favorites. Returns 204 No Content on success.
+
+## Get Playlist Members
+
+<Route method="GET">/playlist/[\{Playlist.ID}](#playlist-object)/member</Route>
+
+Gets the users who the playlist has been shared with. Returns an array of [playlist member](#playlist-member-object) objects.
+
+## Add Playlist Member
+
+<Route method="POST">/playlist/[\{Playlist.ID}](#playlist-object)/member</Route>
+<Callout title="This endpoint requires authentication" />
+
+Share a playlist with someone. Returns 204 No Content on success.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    PersonID: {
+      description: "UUID of the user to add",
+      type: "string",
+      required: true,
+    },
+    Role: {
+      description: "Role for the new member",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Update Playlist Member
+
+<Route method="POST">
+  /playlist/[\{Playlist.ID}](#playlist-object)/member/[\{PlaylistMember.PersonID}](#playlist-member-object)
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Changes the role of a member. Returns 204 No Content on success.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    Role: {
+      description: "The new role for the member",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Remove Playlist Member
+
+<Route method="POST">
+  /playlist/[\{Playlist.ID}](#playlist-object)/member/[\{PlaylistMember.PersonID}](#playlist-member-object)/delete
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Removes the member's permissions. Returns 204 No Content on success.
+
+## Follow Public Playlist
+
+<Route method="POST">/playlist/[\{Playlist.ID}](#playlist-object)/follow</Route>
+<Callout title="This endpoint requires authentication" />
+
+Adds the current user as a viewer member to a public playlist. Returns a 204 No Content on success.
+
+## Unfollow Public Playlist
+
+<Route method="POST">
+  /playlist/[\{Playlist.ID}](#playlist-object)/unfollow
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Removes the current user's membership from a public playlist. Returns a 204 No Content on success.
