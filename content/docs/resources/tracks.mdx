@@ -630,6 +630,11 @@ Browse and filter tracks.
       description: "Use copyright safe mode",
       type: "boolean",
     },
+    dedupe_isrc: {
+      description: "Hide duplicate tracks. Only the entry from the track's debut release is included",
+      type: "boolean",
+      default: "true",
+    },
     artist_id: {
       description:
         "Filter for tracks by a specific artist. Value is the artist's UUID",
@@ -720,6 +725,10 @@ Browse and filter tracks.
     release_types: {
       description: "Filters tracks by release type",
       type: "array of strings",
+    },
+    release_date_min: {
+      description: "Filter for tracks newer than this date. Weirdly `release_date_max` doesn't seem to exist at the moment",
+      type: "ISO8601 Timestamp",
     },
     languages: {
       description:
