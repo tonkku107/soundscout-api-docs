@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import MdxStringWrapper from "./mdxStringWrapper";
 
 /**
@@ -7,6 +8,7 @@ import MdxStringWrapper from "./mdxStringWrapper";
  * @property {string} [default] The default value for the field if omitted. Supports MDX
  * @property {boolean} [required] If the field is required
  * @property {boolean} [nullable] If the field is nullable
+ * @property {boolean} [deprecated] If the field is deprecated
  */
 
 /**
@@ -85,29 +87,35 @@ export default function FieldTable({ fields = {}, paginatedData }) {
         </tr>
       </thead>
       <tbody>
-        {Object.entries(displayedFields).map(([fieldName, field]) => (
-          <tr key={fieldName}>
-            <td>
-              <pre>
-                {fieldName}
-                {!field.required ? "?" : ""}
-              </pre>
-            </td>
-            <td>
-              <MdxStringWrapper
-                content={`${field.nullable ? "?" : ""}${field.type}`}
-              />
-            </td>
-            {showDefault && (
+        {Object.entries(displayedFields).map(([fieldName, field]) => {
+          const FieldNameWrap = field.deprecated ? "s" : Fragment;
+
+          return (
+            <tr key={fieldName}>
               <td>
-                <MdxStringWrapper content={field.default} />
+                <pre>
+                  <FieldNameWrap>
+                    {fieldName}
+                    {!field.required ? "?" : ""}
+                  </FieldNameWrap>
+                </pre>
               </td>
-            )}
-            <td>
-              <MdxStringWrapper content={field.description} />
-            </td>
-          </tr>
-        ))}
+              <td>
+                <MdxStringWrapper
+                  content={`${field.nullable ? "?" : ""}${field.type}`}
+                />
+              </td>
+              {showDefault && (
+                <td>
+                  <MdxStringWrapper content={field.default} />
+                </td>
+              )}
+              <td>
+                <MdxStringWrapper content={field.description} />
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

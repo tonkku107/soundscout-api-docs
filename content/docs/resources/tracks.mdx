@@ -631,7 +631,8 @@ Browse and filter tracks.
       type: "boolean",
     },
     dedupe_isrc: {
-      description: "Hide duplicate tracks. Only the entry from the track's debut release is included",
+      description:
+        "Hide duplicate tracks. Only the entry from the track's debut release is included",
       type: "boolean",
       default: "true",
     },
@@ -727,8 +728,15 @@ Browse and filter tracks.
       type: "array of strings",
     },
     release_date_min: {
-      description: "Filter for tracks newer than this date. Weirdly `release_date_max` doesn't seem to exist at the moment",
+      description:
+        "Filter for tracks newer than this date. Weirdly `release_date_max` doesn't seem to exist at the moment",
       type: "ISO8601 Timestamp",
+    },
+    decades: {
+      description:
+        "Era classification by release decade. Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution). This filter was visibly removed from the website so this field might be removed soon as well",
+      type: "array of strings",
+      deprecated: true,
     },
     languages: {
       description:
@@ -922,12 +930,14 @@ Returns a paginated format but all results are always included.
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
 On top of the filters from Browse Tracks the following are also included:
 
-<FieldTable fields={{
-  playlistId: {
-    description: "UUID of a playlist to get distribution for",
-    type: "string",
-  },
-}} />
+<FieldTable
+  fields={{
+    playlistId: {
+      description: "UUID of a playlist to get distribution for",
+      type: "string",
+    },
+  }}
+/>
 
 #### Response Body [!toc]
 
@@ -955,12 +965,14 @@ Returns a paginated format but all results are always included.
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
 On top of the filters from Browse Tracks the following are also included:
 
-<FieldTable fields={{
-  playlistId: {
-    description: "UUID of a playlist to get distribution for",
-    type: "string",
-  },
-}} />
+<FieldTable
+  fields={{
+    playlistId: {
+      description: "UUID of a playlist to get distribution for",
+      type: "string",
+    },
+  }}
+/>
 
 #### Response Body [!toc]
 
@@ -987,12 +999,14 @@ Returns a paginated format but all results are always included.
 [Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
 On top of the filters from Browse Tracks the following are also included:
 
-<FieldTable fields={{
-  playlistId: {
-    description: "UUID of a playlist to get distribution for",
-    type: "string",
-  },
-}} />
+<FieldTable
+  fields={{
+    playlistId: {
+      description: "UUID of a playlist to get distribution for",
+      type: "string",
+    },
+  }}
+/>
 
 #### Response Body [!toc]
 
@@ -1007,37 +1021,38 @@ In these track objects `TrackID` is called `ID`,
 fields starting with `Release` and the fields `Artists` and `TrackNumber` are excluded,
 and it has the following additional fields:
 
-<FieldTable fields={{
-  AlternateISRCs: {
-    description: "Alternate ISRCs for the track",
-    type: "unknown",
-    nullable: true,
-    required: true,
-  },
-  DebutDate: {
-    description: "Date when the track first released",
-    type: "ISO8601 Timestamp",
-    nullable: true,
-    required: true,
-  },
-  ID: {
-    description:
-      "Instead of `TrackID` this field is used",
-    type: "string",
-    required: true,
-  },
-  LMNoContentIDGap: {
-    description: "Gap in exclusion from the Content ID system",
-    type: "unknown",
-    nullable: true,
-    required: true,
-  },
-  ProcessClaimsAfter: {
-    description: "Date after which Content ID claims started processing",
-    type: "ISO8601 Timestamp",
-    required: true,
-  },
-}} />
+<FieldTable
+  fields={{
+    AlternateISRCs: {
+      description: "Alternate ISRCs for the track",
+      type: "unknown",
+      nullable: true,
+      required: true,
+    },
+    DebutDate: {
+      description: "Date when the track first released",
+      type: "ISO8601 Timestamp",
+      nullable: true,
+      required: true,
+    },
+    ID: {
+      description: "Instead of `TrackID` this field is used",
+      type: "string",
+      required: true,
+    },
+    LMNoContentIDGap: {
+      description: "Gap in exclusion from the Content ID system",
+      type: "unknown",
+      nullable: true,
+      required: true,
+    },
+    ProcessClaimsAfter: {
+      description: "Date after which Content ID claims started processing",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+  }}
+/>
 
 #### Query String Params [!toc]
 
