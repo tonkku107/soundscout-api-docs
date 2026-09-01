@@ -514,11 +514,19 @@ Adds a track to the bottom of the playlist. Returns 204 No Content on success.
   }}
 />
 
+## Move Track In Playlist
+
+<Route method="POST">
+  /playlist/[\{Playlist.ID}](#playlist-object)/track/[\{PlaylistTrack.TrackID}](#playlist-track-object)/move/[\{PlaylistTrack.Sort}](#playlist-track-object)
+</Route>
+<Callout title="This endpoint requires authentication" />
+
+Moves a track to the sort position in the url parameter. Returns 204 No Content on success.
+
 ## Remove Track From Playlist
 
 <Route method="POST">
-  /playlist/[\{Playlist.ID}](#playlist-object)/track/[\{PlaylistTrack.TrackID}
-  ](#playlist-track-object)/delete
+  /playlist/[\{Playlist.ID}](#playlist-object)/track/[\{PlaylistTrack.TrackID}](#playlist-track-object)/delete
 </Route>
 <Callout title="This endpoint requires authentication" />
 
