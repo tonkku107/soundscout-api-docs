@@ -92,6 +92,31 @@ The response follows this format:
 
 Some endpoints redirect to an original image file. To avoid downloading unnecessarely large files these can be automatically resized.
 
+To do so, a `width` query parameter must be included (defined below). When `width` is included the endpoint will
+instead redirect to `https://cdx.monstercat.com/resized/{SHA1(???)}/{width}.{encoding}` containing the image file if it has already been generated.
+If it has not been generated yet, the endpoint redirects to the original file like it normally does and starts a background job to encode the image.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    width: {
+      description:
+        "A desired width for the image file. Rounds to the nearest value between 300, 512, 1024, 1280, 1920, 2048, 4096. Height is determined automatically from aspect ratio.",
+      type: "integer",
+      required: true,
+    },
+    encoding: {
+      description:
+        "The desired image format (jpeg, png, webp). Unknown values will fall back to jpeg.",
+      type: "string",
+      default: "webp",
+    },
+  }}
+/>
+
+### Old/alternate method
+
 <Callout title="This endpoint does not use the usual base URL!" />
 <Route method="GET">https:&#8203;//cdx.monstercat.com</Route>
 
