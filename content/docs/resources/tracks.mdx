@@ -548,6 +548,41 @@ title: Tracks
   }}
 />
 
+### Performance Type Distribution Object
+
+<FieldTable
+  fields={{
+    PerformanceType: {
+      description: "The type of performance. Vocal or Instrumental",
+      type: "string",
+      required: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks with the performance type",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
+### Audio Language Distribution Object
+
+<FieldTable
+  fields={{
+    AudioLanguage: {
+      description:
+        'An ISO 639-1 language code. `__not_detected__` for "Others"',
+      type: "string",
+      required: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks with the audio language",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
 ### Keys
 
 | Key | Value |
@@ -740,13 +775,13 @@ Browse and filter tracks.
     },
     languages: {
       description:
-        'Primary vocal language(s) detected in the track. Use `__not_detected__` for "Others". Acceptable values can be obtained with [Get Catalog Tag Distribution](#get-catalog-tag-distribution)',
+        "Primary vocal language(s) of the track. Acceptable values can be obtained with [Get Catalog Audio Language Distribution](#get-catalog-audio-language-distribution)",
       type: "array of strings",
     },
     vocals: {
       description:
-        "Instrumental vs Vocal. `true` for vocals, `false` for instrumental",
-      type: "boolean",
+        "Instrumental vs Vocal. Acceptable values can be obtained with [Get Catalog Performance Type Distribution](#get-catalog-performance-type-distribution)",
+      type: "array of strings",
     },
     energy_min: {
       description:
@@ -945,8 +980,7 @@ On top of the filters from Browse Tracks the following are also included:
 ## Get Catalog Tag Distribution For Explore
 
 <Route method="GET">
-  /tag-distribution/[\{Tag.Category}](#tag-distribution-object)/[\{Tag.Tag}
-  ](#tag-distribution-object)
+  /tag-distribution/[\{Tag.Category}](#tag-distribution-object)/[\{Tag.Tag}](#tag-distribution-object)
 </Route>
 
 Version of tag distribution for themes and moods explore pages.
@@ -1010,6 +1044,56 @@ On top of the filters from Browse Tracks the following are also included:
 #### Response Body [!toc]
 
 <FieldTable paginatedData="array of [label distribution](#label-distribution-object) objects" />
+
+## Get Catalog Performance Type Distribution
+
+<Route method="GET">/performance-type-distribution</Route>
+
+Get the amounts of tracks with vocals or instrumentals.
+Returns a paginated format but all results are always included.
+
+#### Query String Parameters [!toc]
+
+[Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+On top of the filters from Browse Tracks the following are also included:
+
+<FieldTable
+  fields={{
+    playlistId: {
+      description: "UUID of a playlist to get distribution for",
+      type: "string",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [performance type distribution](#performance-type-distribution-object) objects" />
+
+## Get Catalog Audio Language Distribution
+
+<Route method="GET">/audio-language-distribution</Route>
+
+Get available languages and amounts of tracks with vocals in that language.
+Returns a paginated format but all results are always included.
+
+#### Query String Parameters [!toc]
+
+[Filtering query parameters from Browse Tracks](#browse-tracks-query-string-params) can be used to get updated amounts with the selected filters.
+On top of the filters from Browse Tracks the following are also included:
+
+<FieldTable
+  fields={{
+    playlistId: {
+      description: "UUID of a playlist to get distribution for",
+      type: "string",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable paginatedData="array of [audio language distribution](#audio-language-distribution-object) objects" />
 
 ## Get Track (unused)
 
