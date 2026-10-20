@@ -1,0 +1,375 @@
+---
+title: Search
+---
+
+## Get Name Matches
+
+<Route method="GET">/search/names</Route>
+<Callout title="This endpoint requires authentication" />
+
+Get artists, releases, tracks, etc... that may match the search query by name.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    q: {
+      description: "The search query",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable
+  fields={{
+    NameMatches: {
+      description: "Search result",
+      type: "[name natches](#name-matches-object) object",
+      required: true,
+      nullable: true,
+    },
+  }}
+/>
+
+##### Name Matches Object
+
+<FieldTable
+  fields={{
+    Best: {
+      description: "The best match for the query if there is one",
+      type: "[search entity](#search-entity-object) object",
+      required: true,
+      nullable: true,
+    },
+    BestExact: {
+      description: "If the best match matches exactly with the query",
+      type: "boolean",
+      required: true,
+    },
+    Groups: {
+      description: "Results in the different categories",
+      type: "array of [name matches group](#name-matches-group) objects",
+      required: true,
+    },
+    HiddenNameTotal: {
+      description: "How many results were hidden",
+      type: "integer",
+      required: true,
+    },
+    HiddenTrackTotal: {
+      description: "How many tracks were hidden",
+      type: "integer",
+      required: true,
+    },
+  }}
+/>
+
+##### Name Matches Group Object
+
+<FieldTable
+  fields={{
+    Entities: {
+      description: "The results in this category. `null` in the track gategory",
+      type: "array of [search entity](#search-entity-object) objects",
+      required: true,
+      nullable: true,
+    },
+    Kind: {
+      description:
+        "What this category is. (artist, release, playlist, genre, mood, theme, track)",
+      type: "string",
+      required: true,
+    },
+    Total: {
+      description: "Amount of results in this category",
+      type: "integer",
+      required: true,
+    },
+    Tracks: {
+      description:
+        "The results in the track category. `null` in other categories",
+      type: "array of [track](./tracks#track-object) objects",
+      required: true,
+      nullable: true,
+    },
+  }}
+/>
+
+##### Search Entity Object
+
+<FieldTable
+  fields={{
+    ArtistsTitle: {
+      description: "The displayable string of the artists for releases",
+      type: "string",
+      required: true,
+    },
+    ID: {
+      description: "The UUID of the entity",
+      type: "string",
+      required: true,
+    },
+    Image: {
+      description: "An image associated with the entity",
+      type: "[search entity image](#search-entity-image-object) object",
+      required: true,
+    },
+    Name: {
+      description: "The name of the entity",
+      type: "string",
+      required: true,
+    },
+    ReleaseDate: {
+      description: "The release date for releases",
+      type: "ISO8601 Timestamp",
+      required: true,
+      nullable: true,
+    },
+    ReleaseType: {
+      description: "The release type for releases",
+      type: "string",
+      required: true,
+    },
+    Type: {
+      description:
+        "The type of the entity (artist, release, playlist, genre, mood, theme)",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+##### Search Entity Image Object
+
+<FieldTable
+  fields={{
+    FileID: {
+      description: "The UUID of the image file",
+      type: "string",
+      required: true,
+    },
+    HasImage: {
+      description: "Whether the entity has an image or not",
+      type: "boolean",
+      required: true,
+    },
+    Kind: {
+      description: "The type of image",
+      type: "boolean",
+      required: true,
+    },
+  }}
+/>
+
+## Search By Prompt
+
+<Route method="POST">/search/prompt</Route>
+<Callout title="This endpoint requires authentication" />
+
+Search with a written prompt.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    soundsLike: {
+      description: "Only match by sound, not by name",
+      type: "boolean",
+      default: "false",
+    },
+  }}
+/>
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    page: {
+      description:
+        "The page of results to get. The website tries to use `Page` with a hardcoded value of 0",
+      type: "integer",
+      default: "1",
+    },
+    page_size: {
+      description:
+        "Amount of results per page. The website tries to use `PageSize` with a hardcoded value of 0",
+      type: "integer",
+      default: "20",
+    },
+    Seeds: {
+      description: "The search query",
+      type: "array of [search seed](#search-seed-object) objects",
+      required: true,
+    },
+  }}
+/>
+
+##### Search Seed Object
+
+<FieldTable
+  fields={{
+    type: {
+      description: "Type of seed. Only `prompt` is known",
+      type: "string",
+      required: true,
+    },
+    value: {
+      description: "The value for the seed aka the search query prompt",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable
+  paginatedData={{
+    description: "The search results",
+    type: "array of [track](./tracks#track-object) objects",
+    required: true,
+  }}
+  searchResultFields
+/>
+
+## Search By ID
+
+<Route method="POST">/search/by-id</Route>
+<Callout title="This endpoint requires authentication" />
+
+Search for tracks similar to another on SoundScout.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    page: {
+      description: "The page of results to get",
+      type: "integer",
+      default: "1",
+    },
+    page_size: {
+      description: "Amount of results per page",
+      type: "integer",
+      default: "13",
+    },
+    track_id: {
+      description: "The UUID of the track to search for similarities with",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable
+  paginatedData={{
+    description: "The search results",
+    type: "array of [track](./tracks#track-object) objects",
+    required: true,
+  }}
+  searchResultFields
+/>
+
+## Search By File
+
+<Route method="POST">/search/by-file</Route>
+<Callout title="This endpoint requires authentication" />
+
+Search for tracks similar to one uploaded as a file.
+
+#### Query String Params [!toc]
+
+<FieldTable
+  fields={{
+    limit: {
+      description: "Amount of tracks to return",
+      type: "integer",
+      default: "20",
+    },
+    offset: {
+      description: "Amount of tracks to skip",
+      type: "integer",
+      default: "0",
+    },
+  }}
+/>
+
+#### Form Params [!toc]
+
+The file is uploaded using `Content-Type` of `multipart/form-data`.
+
+<FieldTable
+  fields={{
+    track: {
+      description: "The file to search with",
+      type: "file contents",
+      required: true,
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable
+  paginatedData={{
+    description: "The search results",
+    type: "array of [track](./tracks#track-object) objects",
+    required: true,
+  }}
+  searchResultFields
+/>
+
+## Search By URL
+
+<Route method="POST">/search/by-url</Route>
+<Callout title="This endpoint requires authentication" />
+
+Search for tracks similar to one linked to on another platform.
+
+#### JSON Params [!toc]
+
+<FieldTable
+  fields={{
+    link: {
+      description: "The link to search with",
+      type: "integer",
+      required: true,
+    },
+    page: {
+      description: "The page of results to get",
+      type: "integer",
+      default: "1",
+    },
+    page_size: {
+      description: "Amount of results per page",
+      type: "integer",
+      default: "20",
+    },
+    time_limit: {
+      description: "Unused",
+      type: "integer",
+      default: "0",
+    },
+    time_offset: {
+      description: "Unused",
+      type: "integer",
+      default: "0",
+    },
+  }}
+/>
+
+#### Response Body [!toc]
+
+<FieldTable
+  paginatedData={{
+    description: "The search results",
+    type: "array of [track](./tracks#track-object) objects",
+    required: true,
+  }}
+  searchResultFields
+/>

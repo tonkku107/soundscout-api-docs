@@ -18,10 +18,52 @@ import MdxStringWrapper from "./mdxStringWrapper";
  * @param {string | FieldInfo} [props.paginatedData] If supplied, prefills with the fields for paginated content.
  * As a string this will be the type for `Data`. As an object it will be the full definition for `Data`.
  * fields from `fields` will be added to the beginning of the table
+ * @param {boolean} [props.searchResultFields] If common search result response fields should be prefilled
  * @returns {JSX} Rendered table
  */
-export default function FieldTable({ fields = {}, paginatedData }) {
+export default function FieldTable({ fields = {}, paginatedData, searchResultFields }) {
   let displayedFields = fields;
+
+  if (searchResultFields) {
+    displayedFields = {
+      ...displayedFields,
+      QueryID: {
+        description: "The UUID of the search query. Can be used on the [Browse Tracks](./tracks#browse-tracks) endpoint for more results",
+        type: "string",
+        required: true,
+      },
+      SearchType: {
+        description: "Always an empty string",
+        type: "string",
+        required: true,
+      },
+      EntityLabel: {
+        description: "Always an empty string",
+        type: "string",
+        required: true,
+      },
+      MatchedEntities: {
+        description: "Always an empty array",
+        type: "array",
+        required: true,
+      },
+      KeywordMatches: {
+        description: "Always `null`",
+        type: "null",
+        required: true,
+      },
+      KeywordTotal: {
+        description: "Always `0`",
+        type: "integer",
+        required: true,
+      },
+      SimilarTo: {
+        description: "Always `false`",
+        type: "boolean",
+        required: true,
+      },
+    }
+  }
 
   if (paginatedData) {
     displayedFields = {
