@@ -763,8 +763,11 @@ Browse and filter tracks.
       type: "array of strings",
     },
     release_date_min: {
-      description:
-        "Filter for tracks newer than this date. Weirdly `release_date_max` doesn't seem to exist at the moment",
+      description: "Filter for tracks newer than this date",
+      type: "ISO8601 Timestamp",
+    },
+    release_date_before: {
+      description: "Filter for tracks older than this date",
       type: "ISO8601 Timestamp",
     },
     decades: {
