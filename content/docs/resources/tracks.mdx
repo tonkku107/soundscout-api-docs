@@ -498,11 +498,6 @@ title: Tracks
       type: "integer",
       required: true,
     },
-    Type: {
-      description: "The type of genre (`primary` or `secondary`)",
-      type: "string",
-      required: true,
-    },
   }}
 />
 
@@ -610,7 +605,7 @@ Get a track by ID. Returns a [track](#track-object) object.
       description:
         "Fields to include in the response. Excluded fields will still be present but use their default values",
       type: "array of strings",
-      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "Genres", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseFeaturedArtistsTitle", "ReleaseGenres", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
     },
   }}
 />
@@ -645,7 +640,7 @@ Browse and filter tracks.
       description:
         "Fields to include in the response. Excluded fields will still be present but use their default values",
       type: "array of strings",
-      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "EffectiveGenrePrimary", "EffectiveGenreSecondary", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseEffectiveGenrePrimary", "ReleaseEffectiveGenreSecondary", "ReleaseFeaturedArtistsTitle", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
+      default: `<details><summary>Best effort list of defaults</summary>["ArtistsTitle", "BPM", "BrandTitle", "Duration", "Genres", "ISRC", "IsCreatorFriendly", "IsExplicit", "IsFavorite", "LabelID", "Lyrics", "LyricsLanguage", "NoContentID", "PerformanceType", "PreferredImageFileID", "PublicBPM", "PublicDuration", "ReleaseArtistsTitle", "RelaseCatalogID", "ReleaseCopyrightPLine", "ReleaseCoverFileID", "ReleaseDate", "ReleaseDateTimezone", "ReleaseFeaturedArtistsTitle", "ReleaseGenres", "ReleaseGRid", "ReleaseID", "ReleaseLabelID", "ReleaseTags", "ReleaseTitle", "ReleaseType", "ReleaseUPC", "ReleaseVersion", "SkipAims", "Tags", "Title", "TrackID", "TrackNumber", "Version"]</details>`,
     },
     creator_safe: {
       description: "Use copyright safe mode",
