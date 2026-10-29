@@ -34,18 +34,6 @@ title: Tracks
       type: "number",
       required: true,
     },
-    EffectiveGenrePrimary: {
-      description:
-        "The primary genre of the track as shown on the website. Some genres have been combined together",
-      type: "string",
-      required: true,
-    },
-    EffectiveGenreSecondary: {
-      description:
-        "The secondary genre of the track as shown on the website. Some genres have been combined together",
-      type: "string",
-      required: true,
-    },
     GenrePrimary: {
       description:
         "The actual primary genre of the track. Currently this is always an empty string",
@@ -56,6 +44,12 @@ title: Tracks
       description:
         "The actual secondary genre of the track. Currently this is always an empty string",
       type: "string",
+      required: true,
+    },
+    Genres: {
+      description:
+        "The primary and secondary genres as shown on the website represented as an array. Some genres have been combined together",
+      type: "array of strings",
       required: true,
     },
     ISRC: {
@@ -169,18 +163,6 @@ title: Tracks
       type: "string",
       required: true,
     },
-    ReleaseEffectiveGenrePrimary: {
-      description:
-        "The primary genre of the release the track is tied to as shown on the website",
-      type: "string",
-      required: true,
-    },
-    ReleaseEffectiveGenreSecondary: {
-      description:
-        "The secondary genre of the release the track is tied to as shown on the website",
-      type: "string",
-      required: true,
-    },
     ReleaseFeaturedArtistsTitle: {
       description:
         "Artists featured on the release the track is tied to combined into a displayable string",
@@ -204,6 +186,12 @@ title: Tracks
       description:
         "The actual secondary genre of the release the track is tied to. Currently this is always an empty string",
       type: "string",
+      required: true,
+    },
+    ReleaseGenres: {
+      description:
+        "The primary and secondary genres of the release the track is tied to as shown on the website represented as an array",
+      type: "array of strings",
       required: true,
     },
     ReleaseID: {
@@ -295,15 +283,14 @@ title: Tracks
 {
   "TrackID": "c6d956bb-1544-4f13-9ac7-93bb729cff67",
   "Title": "Deadweight",
-  "ArtistsTitle": "ORACLE \u0026 Bertie Scott",
+  "ArtistsTitle": "ORACLE & Bertie Scott",
   "Version": "",
   "BPM": 122,
   "Duration": 248,
   "ISRC": "CA6D22600231",
   "GenrePrimary": "",
   "GenreSecondary": "",
-  "EffectiveGenrePrimary": "Dance",
-  "EffectiveGenreSecondary": "Melodic House \u0026 Techno",
+  "Genres": ["Dance", "Melodic House & Techno"],
   "PublicBPM": 122,
   "PublicDuration": 248,
   "IsExplicit": false,
@@ -360,17 +347,16 @@ title: Tracks
   "TrackNumber": 1,
   "ReleaseID": "b91bd3a7-9212-4f75-a8a7-310cac215502",
   "ReleaseTitle": "Deadweight",
-  "ReleaseArtistsTitle": "ORACLE \u0026 Bertie Scott",
-  "ReleaseFeaturedArtistsTitle": "ORACLE \u0026 Bertie Scott",
+  "ReleaseArtistsTitle": "ORACLE & Bertie Scott",
+  "ReleaseFeaturedArtistsTitle": "ORACLE & Bertie Scott",
   "ReleaseVersion": "",
   "ReleaseDate": "2026-08-18T07:00:00.922Z",
   "ReleaseDateTimezone": "America/Vancouver",
   "ReleaseType": "EP",
   "ReleaseGenrePrimary": "",
   "ReleaseGenreSecondary": "",
-  "ReleaseEffectiveGenrePrimary": "Dance",
-  "ReleaseEffectiveGenreSecondary": "Melodic House \u0026 Techno",
-  "ReleaseTags": [],
+  "ReleaseGenres": ["Dance", "Melodic House & Techno"],
+  "ReleaseTags": null,
   "ReleaseUPC": "742779562876",
   "ReleaseCatalogID": "742779562876",
   "ReleaseGRid": "A10443Z5I5JVJ9E6V1",
