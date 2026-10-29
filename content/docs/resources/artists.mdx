@@ -11,6 +11,11 @@ title: Artists
       type: "string",
       required: true,
     },
+    Hidden: {
+      description: "Whether the artist profile is hidden",
+      type: "boolean",
+      required: true,
+    },
     ID: {
       description: "UUID of the artist",
       type: "string",
@@ -27,6 +32,12 @@ title: Artists
       type: "array of [artist link](#artist-link-object) objects",
       required: true,
       nullable: true,
+    },
+    MemberIDs: {
+      description:
+        "UUIDs of artist profiles that have been merged into this one",
+      type: "array of strings",
+      required: true,
     },
     Name: {
       description: "The artist's name",
@@ -66,7 +77,9 @@ title: Artists
   ],
   "Tags": null,
   "Description": "Bad Computer embraces a cycle of reinvention. He emerges from 2021 artistically renewed after an introspective year, adapting to a new life on a new continent. “It's taken a long time to adjust to Finland. I needed that break of 12 months not only to experiment and find my new stylistic trajectory, but also to ground myself”. Time spent in artistic meditation resulted in a newfound confidence for the Australian-born artist, reconnecting in his limbo with the music that inspired him. Drawing on dance pop and the early 2010s as inspiration points to fuse with his familiar sharp and euphoric production style, he took the next step forward. Reflection, experimentation and soul-searching opened up Bad Computer’s artistic voice, allowing him to write more expressively with the aim of creating memorable and seamless music. Pulling influence from all directions, from Owl City to Ecco2K, Bad Computer sets forward on a more thoughtful and genuine approach to songwriting. His new music eschews the guilt of a guilty pleasure, affectionately embracing cliché and truism in the pursuit of unabashed artistic freedom. “I do what I like, and if it’s trendy or cheesy I’ll do it anyway.”\nSonically, Bad Computer moves from strength to strength. The same captivating and inventive production style that cemented him as one of the most exciting acts in current electronic music has blossomed into a more deliberate manifestation. His familiar alchemic production style has into a more intimate form, being deployed in more sporadic rushes of ethereal wonder that seek to capture a feeling in its essence. Careful, melismatic processing brings Ferrier’s own voice to life on his new music, accompanied with rich soundscapes and soaring astral synthesizers. This reconstruction of his musical voice brings to light the familiar ethereal balance of his music, yet far more seamless than ever before. Each sound tells its own stories, and melds together into a rich yet delicate clarity, a soundtrack to memories yet to be made.",
-  "Images": { "cover": "8ec2592d-9480-413b-8b48-fb89dcaa7271" }
+  "Images": { "cover": "8ec2592d-9480-413b-8b48-fb89dcaa7271" },
+  "MemberIDs": ["28eb7dcd-61d1-4496-a36b-65ce1fa6cafa"],
+  "Hidden": false
 }
 ```
 
@@ -155,6 +168,27 @@ Browse all artists.
 
 <FieldTable paginatedData="array of [artist](#artist-object) objects" />
 
+## Browse Artist Tracks
+
+<Route method="GET">/artist/[\{Artist.ID or Artist.URI}](#artist-object)/catalog</Route>
+
+A version of the [Browse Tracks](./tracks#browse-tracks) endpoint for artists.
+See the aforementioned endpoint for the parameters and response information.
+
+## Browse Artist Releases
+
+<Route method="GET">/artist/[\{Artist.ID or Artist.URI}](#artist-object)/releases</Route>
+
+A version of the [Browse Releases](./releases#browse-releases) endpoint for the artist's own releases.
+See the aforementioned endpoint for the parameters and response information.
+
+## Browse Artist's Appeared On Releases
+
+<Route method="GET">/artist/[\{Artist.ID or Artist.URI}](#artist-object)/appears-on</Route>
+
+A version of the [Browse Releases](./releases#browse-releases) endpoint for releases the artist appears on.
+See the aforementioned endpoint for the parameters and response information.
+
 ## Get Artist Cover Image
 
 <Route method="GET">/artist/[\{Artist.ID}](#artist-object)/cover</Route>
@@ -169,6 +203,30 @@ For size and format options, see [Image Formatting](../reference#image-formattin
     fileID: {
       description: "The UUID of the file from `Images.cover`",
       type: "string",
+    },
+  }}
+/>
+
+## Get Artist Cover Image Info
+
+<Route method="GET">/artist/[\{Artist.ID}](#artist-object)/cover-info</Route>
+
+Obtain metadata about the source of the cover image.
+
+#### Response Body [!toc]
+
+<FieldTable
+  fields={{
+    FileID: {
+      description: "The UUID of the image file if source is `upload`",
+      type: "string",
+      required: true,
+    },
+    Source: {
+      description:
+        "The source of the cover image. `upload` for a file on SoundScout's platform. `spotify` for Spotify's CDN",
+      type: "string",
+      required: true,
     },
   }}
 />
