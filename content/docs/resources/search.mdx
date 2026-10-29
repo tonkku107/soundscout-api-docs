@@ -164,6 +164,79 @@ Get artists, releases, tracks, etc... that may match the search query by name.
   }}
 />
 
+## Get Tags
+
+<Route method="GET">/search/tags</Route>
+<Callout title="This endpoint requires authentication" />
+
+Get all tags grouped by category.
+
+#### Response Body [!toc]
+
+<FieldTable
+  fields={{
+    tags: {
+      description: "Categories of tags",
+      type: "[search tag categories](#search-tag-categories-object) object",
+      required: true,
+    },
+  }}
+/>
+
+##### Search Tag Categories Object
+
+<FieldTable
+  fields={{
+    decade: {
+      description: "Tags in the decade category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+    genre: {
+      description: "Tags in the genre category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+    instrument: {
+      description: "Tags in the instrument category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+    mood: {
+      description: "Tags in the mood category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+    usage: {
+      description: "Tags in the usage category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+    vocals: {
+      description: "Tags in the vocals category",
+      type: "array of [search tag](#search-tag-object) objects",
+      required: true,
+    },
+  }}
+/>
+
+##### Search Tag Object
+
+<FieldTable
+  fields={{
+    id: {
+      description: "ID of the tag",
+      type: "number",
+      required: true,
+    },
+    title: {
+      description: "Title of the tag",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
 ## Search By Prompt
 
 <Route method="POST">/search/prompt</Route>
