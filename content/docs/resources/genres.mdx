@@ -1,0 +1,90 @@
+---
+title: Genres
+---
+
+## Genre Object
+
+<FieldTable
+  fields={{
+    ID: {
+      description: "The UUID of the genre",
+      type: "string",
+      required: true,
+    },
+    Title: {
+      description: "The name of the genre",
+      type: "string",
+      required: true,
+    },
+    Status: {
+      description: "Status of the genre",
+      type: "string",
+      required: true,
+    },
+    MappedTo: {
+      description: "The genre that this genre is grouped under. Seemingly always `null` because we only see the resulting combined genre",
+      type: "???",
+      required: true,
+      nullable: true,
+    },
+    TrackCount: {
+      description: "Amount of tracks that have this genre",
+      type: "integer",
+      required: true,
+    },
+    PreferredImageFileID: {
+      description: "UUID of the image file associated with the genre",
+      type: "string",
+      required: true,
+      nullable: true,
+    },
+    TopReleases: {
+      description: "References to some of the most popular releases with this genre",
+      type: "array of [top release](#top-release-object) objects",
+      required: true,
+      nullable: true,
+    },
+    CreatedAt: {
+      description: "When the genre was created",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+    UpdatedAt: {
+      description: "When the genre was last updated",
+      type: "ISO8601 Timestamp",
+      required: true,
+    },
+  }}
+/>
+
+### Top Release Object
+
+<FieldTable
+  fields={{
+    ID: {
+      description: "The UUID of the release",
+      type: "string",
+      required: true,
+    },
+    Title: {
+      description: "UUID of the release's cover file",
+      type: "string",
+      required: true,
+    },
+  }}
+/>
+
+## Get Genre
+
+<Route method="GET">/genre/[\{Genre.ID}](#genre-object)</Route>
+
+Get a genre by ID. Returns a [genre](#genre-object) object.
+
+## Get Genre Image
+
+<Route method="GET">
+  /file/[\{Genre.PreferredImageFileID}](#genre-object)/cover
+</Route>
+
+Redirects to the original image file.
+For size and format options, see [Image Formatting](../reference#image-formatting).

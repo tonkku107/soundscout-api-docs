@@ -49,7 +49,7 @@ title: Tracks
     Genres: {
       description:
         "The primary and secondary genres as shown on the website represented as an array. Some genres have been combined together",
-      type: "array of strings",
+      type: "array of [genre](./genres#genre-object) objects",
       required: true,
     },
     ISRC: {
@@ -191,7 +191,7 @@ title: Tracks
     ReleaseGenres: {
       description:
         "The primary and secondary genres of the release the track is tied to as shown on the website represented as an array",
-      type: "array of strings",
+      type: "array of [genre](./genres#genre-object) objects",
       required: true,
     },
     ReleaseID: {
@@ -290,7 +290,30 @@ title: Tracks
   "ISRC": "CA6D22600231",
   "GenrePrimary": "",
   "GenreSecondary": "",
-  "Genres": ["Dance", "Melodic House & Techno"],
+  "Genres": [
+    {
+      "ID": "fc2324c6-1b22-40d7-9cc8-8cb8cf7d4d5e",
+      "Title": "Dance",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    },
+    {
+      "ID": "e5de9d19-5859-4b34-9063-4564626be89e",
+      "Title": "Melodic House & Techno",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    }
+  ],
   "PublicBPM": 122,
   "PublicDuration": 248,
   "IsExplicit": false,
@@ -355,7 +378,30 @@ title: Tracks
   "ReleaseType": "EP",
   "ReleaseGenrePrimary": "",
   "ReleaseGenreSecondary": "",
-  "ReleaseGenres": ["Dance", "Melodic House & Techno"],
+  "ReleaseGenres": [
+    {
+      "ID": "fc2324c6-1b22-40d7-9cc8-8cb8cf7d4d5e",
+      "Title": "Dance",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    },
+    {
+      "ID": "e5de9d19-5859-4b34-9063-4564626be89e",
+      "Title": "Melodic House & Techno",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    }
+  ],
   "ReleaseTags": null,
   "ReleaseUPC": "742779562876",
   "ReleaseCatalogID": "742779562876",

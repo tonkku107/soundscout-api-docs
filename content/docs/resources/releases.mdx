@@ -70,7 +70,7 @@ title: Releases
     Genres: {
       description:
         "The primary and secondary genres of the release as shown on the website represented as an array. Some genres have been combined together",
-      type: "array of strings",
+      type: "array of [genre](./genres#genre-object) objects",
       required: true,
     },
     ID: {
@@ -139,7 +139,30 @@ title: Releases
   "GenrePrimary": "",
   "GenreSecondary": "",
   "GenreManual": false,
-  "Genres": ["Dance", "Electronic"],
+  "Genres": [
+    {
+      "ID": "fc2324c6-1b22-40d7-9cc8-8cb8cf7d4d5e",
+      "Title": "Dance",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    },
+    {
+      "ID": "d0633361-25db-4db0-a9ea-bf216f1dc9a4",
+      "Title": "Electronic",
+      "Status": "",
+      "MappedTo": null,
+      "TrackCount": 0,
+      "PreferredImageFileID": null,
+      "TopReleases": null,
+      "CreatedAt": "0001-01-01T00:00:00Z",
+      "UpdatedAt": "0001-01-01T00:00:00Z"
+    }
+  ],
   "GRid": "A10443ZXA68GE0BQLM",
   "LabelID": "dc854522-dd9e-4c06-8bf7-8ce5be043434",
   "ReleaseDate": "2023-11-13T08:00:00.63Z",
